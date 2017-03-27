@@ -1,0 +1,9 @@
+rootProject.name = 'plujezi'
+include 'plujezi-payment'
+include 'plujezi-channel'
+include 'plujezi-rule'
+include 'plujezi-merchant'
+include 'plujezi-risk'
+include 'plujezi-app'
+include 'plujezi-util'
+
