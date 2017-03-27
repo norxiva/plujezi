@@ -6,4 +6,5 @@ include 'plujezi-merchant'
 include 'plujezi-risk'
 include 'plujezi-app'
 include 'plujezi-util'
+include 'plujezi-config'
 
