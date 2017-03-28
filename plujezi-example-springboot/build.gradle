@@ -1,0 +1,20 @@
+
+apply plugin: 'org.springframework.boot'
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.springframework.boot:spring-boot-starter-parent:1.5.2.RELEASE'
+    }
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-jetty'
+    compile 'org.springframework.boot:spring-boot-devtools'
+    compile 'org.springframework.boot:spring-boot-devtools'
+    compile 'com.google.guava:guava:21.0'
+    compile 'com.alibaba:fastjson:1.2.29'
+
+
+
+}

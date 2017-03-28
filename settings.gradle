@@ -7,4 +7,6 @@ include 'plujezi-risk'
 include 'plujezi-app'
 include 'plujezi-util'
 include 'plujezi-config'
+include 'plujezi-example-vertx'
+include 'plujezi-example-springboot'
 

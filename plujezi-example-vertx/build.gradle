@@ -1,0 +1,31 @@
+
+apply plugin: 'com.github.johnrengelman.shadow'
+
+dependencies {
+    compile 'io.vertx:vertx-core:3.3.3'
+    compile 'io.vertx:vertx-web:3.3.3'
+    compile 'com.google.guava:guava:21.0'
+    compile 'com.englishtown.vertx:vertx-guice:2.3.1'
+    compile 'org.slf4j:slf4j-api:1.7.25'
+    compile 'org.slf4j:jcl-over-slf4j:1.7.25'
+    compile 'org.slf4j:jul-to-slf4j:1.7.25'
+    compile 'org.slf4j:log4j-over-slf4j:1.7.25'
+    compile 'ch.qos.logback:logback-classic:1.2.2'
+    compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.8.7'
+
+//    testCompile 'io.vertx:vertx-core:test-jar:3.3.3'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'io.vertx.core.Launcher'
+        attributes 'Main-Verticle': 'plujezi.example.vertx.ApplicationVerticle'
+    }
+}
+
+shadowJar {
+    classifier = 'shadow'
+
+
+
+}
