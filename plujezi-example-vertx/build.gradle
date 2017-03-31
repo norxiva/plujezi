@@ -2,30 +2,34 @@
 apply plugin: 'com.github.johnrengelman.shadow'
 
 dependencies {
-    compile 'io.vertx:vertx-core:3.3.3'
-    compile 'io.vertx:vertx-web:3.3.3'
-    compile 'com.google.guava:guava:21.0'
-    compile 'com.englishtown.vertx:vertx-guice:2.3.1'
-    compile 'org.slf4j:slf4j-api:1.7.25'
-    compile 'org.slf4j:jcl-over-slf4j:1.7.25'
-    compile 'org.slf4j:jul-to-slf4j:1.7.25'
-    compile 'org.slf4j:log4j-over-slf4j:1.7.25'
-    compile 'ch.qos.logback:logback-classic:1.2.2'
-    compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.8.7'
+    compile "io.vertx:vertx-core:$vertxVersion"
+    compile "io.vertx:vertx-web:$vertxVersion"
+    compile "io.vertx:vertx-mysql-postgresql-client:$vertxVersion"
+    compile "com.englishtown.vertx:vertx-jersey:$vertxJerseyVersion"
 
-//    testCompile 'io.vertx:vertx-core:test-jar:3.3.3'
+    compile "com.google.guava:guava:$guavaVersion"
+    compile "com.englishtown.vertx:vertx-guice:$vertxGuiceVersion"
+    compile "com.google.inject.extensions:guice-multibindings:4.1.0"
+    compile "org.glassfish.hk2:guice-bridge:2.4.0-b34"
+    compile "org.slf4j:slf4j-api:$slf4jVersion"
+    compile "org.slf4j:jcl-over-slf4j:$slf4jVersion"
+    compile "org.slf4j:jul-to-slf4j:$slf4jVersion"
+    compile "org.slf4j:log4j-over-slf4j:$slf4jVersion"
+    compile "ch.qos.logback:logback-classic:$logbackVersion"
+    compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion"
+
+    testCompile "io.vertx:vertx-unit:$vertxVersion"
+    testCompile group: "io.vertx", name: "vertx-core", version: "$vertxVersion", classifier: "tests"
 }
 
 jar {
     manifest {
         attributes 'Main-Class': 'io.vertx.core.Launcher'
-        attributes 'Main-Verticle': 'plujezi.example.vertx.ApplicationVerticle'
+//        attributes 'Main-Verticle': 'plujezi.example.vertx.ApplicationVerticle'
+        attributes 'Main-Verticle': 'java-guice:com.englishtown.vertx.jersey.JerseyVerticle'
     }
 }
 
 shadowJar {
     classifier = 'shadow'
-
-
-
 }

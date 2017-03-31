@@ -1,0 +1,8 @@
+{
+  "guice_binder": "plujezi.example.vertx.guice.BusinessOrderModule",
+
+  "host": "localhost",
+  "port": 8080,
+  "base_path": "/",
+  "resources": ["plujezi.example.vertx.endpoint"]
+}

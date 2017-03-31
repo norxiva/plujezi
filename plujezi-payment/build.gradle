@@ -1,0 +1,14 @@
+apply plugin: 'com.github.johnrengelman.shadow'
+
+dependencies {
+
+}
+
+jar {
+    manifest {
+    }
+}
+
+shadowJar {
+    classifier = 'shadow'
+}

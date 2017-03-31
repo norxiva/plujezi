@@ -25,6 +25,14 @@ public class ApplicationVerticle extends AbstractVerticle{
 //
 //        vertx = Vertx.vertx(vertxOptions);
 
+        vertx.eventBus().addInterceptor( context -> {
+
+            log.info("message to [{}]: body: [{}}",
+                    context.message().address(),
+                    context.message().body().toString());
+            context.next();
+        });
+
         Router router = Router.router(vertx);
 
         router.route().handler(BodyHandler.create());
@@ -36,15 +44,15 @@ public class ApplicationVerticle extends AbstractVerticle{
 
         vertx.createHttpServer().requestHandler(router::accept).listen(8080);
         Context context =  vertx.getOrCreateContext();
-        context.config().put("guice_binder", BusinessOrderModule.class.getName())
-                .put("vertx.logger-delegate-factory-class-name", "io.vertx.core.logging.SLF4JLogDelegateFactory");
+        context.config().put("guice_binder", BusinessOrderModule.class.getName());
+//                .put("vertx.logger-delegate-factory-class-name", "io.vertx.core.logging.SLF4JLogDelegateFactory");
 
         vertx.deployVerticle("java-guice:" + BusinessOrderVerticle.class.getName(),
                 new DeploymentOptions().setWorker(true).setMultiThreaded(true).setInstances(1).setConfig(context.config()), res -> {
             if(res.succeeded()){
-                log.info("deploy verticle [{}] succeeded", "java-guice:plujezi.example.vertx.BusinessOrderVerticle");
+                log.info("deploy verticle [{}] succeeded", "java-guice:" + BusinessOrderVerticle.class.getName());
             }else {
-                log.error("deploy verticle [{}] failed", "java-guice:plujezi.example.vertx.BusinessOrderVerticle");
+                log.error("deploy verticle [{}] failed", "java-guice:" + BusinessOrderVerticle.class.getName());
             }
         });
 

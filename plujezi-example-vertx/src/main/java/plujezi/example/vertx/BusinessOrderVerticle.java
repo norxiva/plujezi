@@ -1,6 +1,7 @@
 package plujezi.example.vertx;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.base.Preconditions;
 import com.google.inject.Inject;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.json.JsonObject;
@@ -14,6 +15,7 @@ import java.util.Map;
 @Slf4j
 public class BusinessOrderVerticle extends AbstractVerticle{
 
+
     private BusinessOrderService businessOrderService;
 
     private ObjectMapper objectMapper;
@@ -26,13 +28,8 @@ public class BusinessOrderVerticle extends AbstractVerticle{
 
     @Override
     public void start() throws Exception {
-        if (this.businessOrderService == null) {
-            throw new IllegalStateException("Dependency was not injected!");
-        }
-
-        if (this.objectMapper == null) {
-            throw new IllegalStateException("Dependency was not injected!");
-        }
+        Preconditions.checkNotNull(businessOrderService, "Dependency was not injected!");
+        Preconditions.checkNotNull(objectMapper, "Dependency was not injected!");
 
         vertx.eventBus().consumer("plujezi.business_order").handler(msg -> {
             try {
