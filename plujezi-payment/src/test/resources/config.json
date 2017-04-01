@@ -1,0 +1,7 @@
+{
+  "guice_binder": "plujezi.payment.guice.MainBinder",
+  "host": "localhost",
+  "port": 8080,
+  "base_path": "/plujezi",
+  "resources": ["plujezi.payment.endpoint"]
+}

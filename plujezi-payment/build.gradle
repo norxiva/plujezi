@@ -1,11 +1,35 @@
 apply plugin: 'com.github.johnrengelman.shadow'
 
 dependencies {
+    compile project(':plujezi-util')
+    compile "io.vertx:vertx-core:$vertxVersion"
+    compile "io.vertx:vertx-web:$vertxVersion"
+    compile "io.vertx:vertx-mysql-postgresql-client:$vertxVersion"
+    compile "com.englishtown.vertx:vertx-jersey:$vertxJerseyVersion"
+    compile "com.englishtown.vertx:vertx-jersey-swagger:$vertxJerseyVersion"
+    compile 'org.glassfish.jersey.media:jersey-media-json-jackson:2.25.1'
+    compile "com.englishtown.vertx:vertx-guice:$vertxGuiceVersion"
+    compile "com.google.inject.extensions:guice-multibindings:4.1.0"
+    compile "org.glassfish.hk2:guice-bridge:2.4.0-b34"
+    compile "com.google.guava:guava:$guavaVersion"
 
+    compile "org.slf4j:slf4j-api:$slf4jVersion"
+    compile "org.slf4j:jcl-over-slf4j:$slf4jVersion"
+    compile "org.slf4j:jul-to-slf4j:$slf4jVersion"
+    compile "org.slf4j:log4j-over-slf4j:$slf4jVersion"
+    compile "ch.qos.logback:logback-classic:$logbackVersion"
+
+    compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion"
+    compile "com.fasterxml.jackson.datatype:jackson-datatype-jdk8:$jacksonVersion"
+    compile "com.fasterxml.jackson.datatype:jackson-datatype-guava:$jacksonVersion"
+
+    testCompile "io.vertx:vertx-unit:$vertxVersion"
 }
 
 jar {
     manifest {
+        attributes 'Main-Class': 'io.vertx.core.Launcher'
+        attributes 'Main-Verticle': 'java-guice:com.englishtown.vertx.jersey.JerseyVerticle'
     }
 }
 

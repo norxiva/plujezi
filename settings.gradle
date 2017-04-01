@@ -11,4 +11,5 @@ include 'plujezi-example-vertx'
 include 'plujezi-example-springboot'
 include 'plujezi-core'
 include 'plujezi-example-vertx-hk2'
+include 'plujezi-payment-batch'
 
