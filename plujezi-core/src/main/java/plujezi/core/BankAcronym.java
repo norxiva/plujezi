@@ -13,10 +13,10 @@ public enum BankAcronym {
     ICBC("中国工商银行"),
     ICBC2B("中国工商银行（企业）");
 
-    private String fullName;
+    private String name;
 
-    BankAcronym(String fullName){
-        this.fullName = fullName;
+    BankAcronym(String name){
+        this.name = name;
     }
 
 }

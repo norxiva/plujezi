@@ -1,30 +1,24 @@
-package plujezi.payment.verticle;
+package plujezi.vertx;
 
 import com.englishtown.vertx.jersey.JerseyOptions;
 import com.englishtown.vertx.jersey.JerseyServer;
 import io.vertx.core.Future;
+import lombok.extern.slf4j.Slf4j;
 
-import javax.inject.Inject;
+@Slf4j
+public abstract class JerseyGuiceVerticle extends AbstractBaseVerticle {
 
-public class MainLauncher extends MainVerticle {
+    protected JerseyServer jerseyServer;
+    protected JerseyOptions options;
 
-    private JerseyServer jerseyServer;
-    private JerseyOptions options;
-
-    @Inject
-    public MainLauncher(JerseyServer jerseyServer, JerseyOptions options) {
+    public JerseyGuiceVerticle(JerseyServer jerseyServer, JerseyOptions options){
         this.jerseyServer = jerseyServer;
         this.options = options;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void start(final Future<Void> startedResult) throws Exception {
-
         this.start();
-
         jerseyServer.start(ar -> {
             if (ar.succeeded()) {
                 startedResult.complete();
@@ -32,14 +26,8 @@ public class MainLauncher extends MainVerticle {
                 startedResult.fail(ar.cause());
             }
         });
-
-
-
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void stop() {
         jerseyServer.close();
